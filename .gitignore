@@ -7,6 +7,7 @@
 *.html
 *.ipynb
 *.exe
+*.cpp
 !app.py
 !ctmc_cli.py
 mm_notes_01112025.txt
