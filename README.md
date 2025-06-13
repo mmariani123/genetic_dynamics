@@ -8,10 +8,11 @@ Incorporating MATLAB/OCTAVE, and Rust - for speed critical components (which I h
 
 Here is example output from the Gillespie SSA basic SIR modelimplmeneted with parallel processing (100 simulations) in Rust. 
 
-![image](https://github.com/user-attachments/assets/71d56f19-c658-48a2-b7d6-c7a58121492f)
+![rust_ssa_sims](https://github.com/user-attachments/assets/29e01851-3221-481e-a5f6-d04761156edb)
 
 The basic example user interface code (Rust, Python3, Shiny for Python) and a few generic functions (above and below) are currently public.
 
 The Previous Shiny for Python example that I created can be found at: https://michael-p-mariani.shinyapps.io/qbs_app/
 
-![ctmc_combined_user_interfaces_pic](https://github.com/user-attachments/assets/81c66314-8b98-44d9-8ae9-2351bb74bf87)
+![genetic_dynamics_combined_user_interfaces_pic](https://github.com/user-attachments/assets/6f5ff517-7101-432a-bc1b-9fa8a7a8f747)
+
