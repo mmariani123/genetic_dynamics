@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1749827970 source:c:\users\mmari\onedrive\desktop\sir_cpp\sir_cpp\main.cpp
+	<iostream>
+	<vector>
+	<random>
+	<chrono>
+	<fstream>
+	<algorithm>
+	<omp.h>
+	<cmath>
+
