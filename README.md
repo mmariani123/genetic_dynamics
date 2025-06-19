@@ -1,6 +1,6 @@
 # ctmc_project
 
-<ins>*Currently under development.</ins> 
+<ins>*Currently under development and core work will remain private.</ins> 
 
 The Continuous Time Markov Chain Model (CTMC) Parasite Life Cycle Project - Incrporating the Gillespie Stochastic Simulation Alogirithm (SSA) at certain key steps to generate solutions to the germane differntial equations. Currently uder devleopment (Core code cannot be made pubic currently) and just branched into a second, similar cross-population (both human and vector) disease allele transmission project.
 
@@ -9,6 +9,10 @@ Incorporating MATLAB/OCTAVE, and Rust - for speed critical components (which I h
 Here is example output from the Gillespie SSA basic SIR modelimplmeneted with parallel processing (100 simulations) in Rust. 
 
 ![rust_ssa_sims](https://github.com/user-attachments/assets/29e01851-3221-481e-a5f6-d04761156edb)
+
+A comparison of the basic SIR model implementatiojn across select packages and languages.
+
+![updated_sir_times](https://github.com/user-attachments/assets/4a77184a-34d7-4d8d-b5bd-1e6c0d9e6669)
 
 The basic example user interface code (Rust, Python3, Shiny for Python) and a few generic functions (above and below) are currently public.
 
