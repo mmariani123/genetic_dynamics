@@ -352,8 +352,38 @@ public:
             }
         }
 
-        // Process all other transitions similarly...
-        // (Implementation continues with all transition types)
+        // Zygote deaths
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                if (rates.zygote_death[i][j] * tau > 0) {
+                    poisson = std::poisson_distribution<int>(rates.zygote_death[i][j] * tau);
+                    int events = poisson(local_rng);
+                    state.z[i][j] = std::max(0.0, state.z[i][j] - events);
+                }
+            }
+        }
+
+        // Ookinete deaths
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                if (rates.ookinete_death[i][j] * tau > 0) {
+                    poisson = std::poisson_distribution<int>(rates.ookinete_death[i][j] * tau);
+                    int events = poisson(local_rng);
+                    state.e[i][j] = std::max(0.0, state.e[i][j] - events);
+                }
+            }
+        }
+
+        // Oocyst deaths
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                if (rates.oocyst_death[i][j] * tau > 0) {
+                    poisson = std::poisson_distribution<int>(rates.oocyst_death[i][j] * tau);
+                    int events = poisson(local_rng);
+                    state.o[i][j] = std::max(0.0, state.o[i][j] - events);
+                }
+            }
+        }
 
         // Mating events
         for (int i = 0; i < N; ++i) {
@@ -364,6 +394,30 @@ public:
                     state.m[j] = std::max(0.0, state.m[j] - events);
                     state.f[i] = std::max(0.0, state.f[i] - events);
                     state.z[i][j] += events;
+                }
+            }
+        }
+
+        // Zygote maturation
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                if (rates.zyg_maturation[i][j] * tau > 0) {
+                    poisson = std::poisson_distribution<int>(rates.zyg_maturation[i][j] * tau);
+                    int events = poisson(local_rng);
+                    state.z[i][j] = std::max(0.0, state.z[i][j] - events);
+                    state.e[i][j] += events;
+                }
+            }
+        }
+
+        // Ookinete maturation
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                if (rates.ook_maturation[i][j] * tau > 0) {
+                    poisson = std::poisson_distribution<int>(rates.ook_maturation[i][j] * tau);
+                    int events = poisson(local_rng);
+                    state.e[i][j] = std::max(0.0, state.e[i][j] - events);
+                    state.o[i][j] += events;
                 }
             }
         }
@@ -445,14 +499,41 @@ public:
                 }
             }
 
-            // Store results (simplified for this example)
+            // Store comprehensive results
             std::vector<double> current_state;
             current_state.push_back(time);
 
-            // Add state variables to results
+            // Add male and female gametes
             for (int i = 0; i < N; ++i) {
                 current_state.push_back(state.m[i]);
+            }
+            for (int i = 0; i < N; ++i) {
                 current_state.push_back(state.f[i]);
+            }
+
+            // Add zygotes (flattened matrix)
+            for (int i = 0; i < N; ++i) {
+                for (int j = 0; j < N; ++j) {
+                    current_state.push_back(state.z[i][j]);
+                }
+            }
+
+            // Add ookinetes (flattened matrix)
+            for (int i = 0; i < N; ++i) {
+                for (int j = 0; j < N; ++j) {
+                    current_state.push_back(state.e[i][j]);
+                }
+            }
+
+            // Add oocysts (flattened matrix)
+            for (int i = 0; i < N; ++i) {
+                for (int j = 0; j < N; ++j) {
+                    current_state.push_back(state.o[i][j]);
+                }
+            }
+
+            // Add sporozoites (flattened matrix)
+            for (int i = 0; i < N; ++i) {
                 for (int j = 0; j < N; ++j) {
                     current_state.push_back(state.s[i][j]);
                 }
