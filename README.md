@@ -1,4 +1,4 @@
-# ctmc_project
+# Genetic Dynamics Project
 
 <ins>*Currently under development and core work will remain private.</ins> 
 
